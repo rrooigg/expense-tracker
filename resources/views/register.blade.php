@@ -7,10 +7,16 @@
 </head>
 <body>
   @auth
-  <p>Welcome, {{ $user->name }}. Track your expenses with eXpnse</p>
+  <h3 style="text-align: center;">Welcome, {{ $user->name }}. Track your expenses with eXpnse</h3>
   <form action="/logout" method="POST">
     @csrf
-    <button style="width: 80px;">Log out</button>
+    <button style="width: 80px; position: fixed; top: 10px;">Log out</button>
+  </form>
+  {{-- add income --}}
+  <form action="/add-income" method="POST" class="income-form">
+    @csrf
+    <input type="number" style="width: 300px;" placeholder="Enter your income..">
+    <button style="width: 80px;">Enter</button>
   </form>
   @else
   <h1 style="text-align: center;">Welcome to ExpenseTracker</h1>
