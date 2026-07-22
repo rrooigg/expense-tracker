@@ -10,7 +10,7 @@
   <h3 style="text-align: center;">Welcome, {{ $user->name }}. Track your expenses with eXpnse</h3>
   <form action="/logout" method="POST">
     @csrf
-    <button style="width: 80px; position: fixed; top: 10px;">Log out</button>
+    <button style="width: 80px;">Log out</button>
   </form>
   {{-- add income --}}
   <form action="/add-income" method="POST" class="income-form">
@@ -43,9 +43,14 @@
   {{-- table showing expenses --}}
   <form action="/add-expenses" method="POST">
     @csrf
-    <input type="text" name="name" class="expenses-input" placeholder="Name">
-    <input type="text" name="amount" class="expenses-input" placeholder="Amount">
-    <input type="text" name="category_id" class="expenses-input" placeholder="Category">
+    <input type="text" name="name" placeholder="Name">
+    <input type="text" name="amount" placeholder="Amount">
+    <select name="category_id" placeholder="Category">
+      @foreach ($categories as $category)
+      <option value="{{ $category->name }}">
+        {{ $category->name }}</option>        
+      @endforeach
+    </select>
     <Button style="width: 80px;">Add</Button>
   </form>
 
