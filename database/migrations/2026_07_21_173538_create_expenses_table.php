@@ -16,7 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name', 200);
             $table->integer('amount');
-            $table->string('category', 200);
+            $table->integer('category', 20);
             
         });
     }

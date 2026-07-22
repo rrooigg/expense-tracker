@@ -9,16 +9,24 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $categories = Category::all();
     $expenses = Expense::all();
+
     //to calculate balance
     $total_expenses = Expense::sum('amount');
     $income = Auth::user()->income;
+
+    //pie chart
+    $chartData = Expense::join('categories', 'expenses.category_id', '=', 'categories.id')
+    ->selectRaw('categories.name, SUM(expenses.amount) as total')
+    ->groupBy(('categories.name'))
+    ->get();
 
     return view('register', [
         'user'=>Auth::user(),
         'categories'=> $categories,
         'expenses' => $expenses,
         'total_expenses' => $total_expenses,
-        'income' => $income
+        'income' => $income,
+        'chartData' => $chartData,
 
     ]);
 });
