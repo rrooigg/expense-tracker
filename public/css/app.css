@@ -64,12 +64,14 @@ a {
 .income-container {
     border: 1px solid black;
     padding: 20px;
-    width: 250px;
-    height: 100px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   border-radius: 20px;
-   background-color: rgb(253, 233, 236);
+    width: 200px;
+    height:90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    background-color: rgb(253, 233, 236);
+    font-weight: bolder;
+    margin-bottom: 50px;
 
-}
+} 

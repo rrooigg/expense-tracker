@@ -21,6 +21,16 @@
   <div class="income-container">
     Total Income: ${{ number_format(Auth::user()->income, 2) }}
   </div>
+  {{-- add categories --}}
+  <form action="/add-category" method="POST" style="display: flex; gap:20px;">
+    @csrf
+    <input type="text" name="name" placeholder="Add category.." class="income-form"  style="width: 300px;">
+    <button style="width: 80px;">Add</button>
+  </form>
+  @foreach ($categories as $category)
+  {{ $category->name }}
+  <br>
+  @endforeach
   @else
   <h1 style="text-align: center;">Welcome to ExpenseTracker</h1>
   <form action="/register" method="POST">
