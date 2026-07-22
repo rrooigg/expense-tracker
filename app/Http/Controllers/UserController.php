@@ -50,8 +50,10 @@ class UserController extends Controller
 
         ]);
         Auth::user()->update([
-        'income' => $incomingField['income'],
+        'income' => $incomingField['income']
+
     ]);
+
         return redirect('/');
     }
     //adding category

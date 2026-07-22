@@ -9,11 +9,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $categories = Category::all();
     $expenses = Expense::all();
+    //to calculate balance
+    $total_expenses = Expense::sum('amount');
+    $income = Auth::user()->income;
 
     return view('register', [
         'user'=>Auth::user(),
         'categories'=> $categories,
         'expenses' => $expenses,
+        'total_expenses' => $total_expenses,
+        'income' => $income
+
     ]);
 });
 

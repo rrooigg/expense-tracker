@@ -15,11 +15,18 @@
   {{-- add income --}}
   <form action="/add-income" method="POST" class="income-form">
     @csrf
-    <input type="number" name="income" style="width: 300px;" placeholder="Enter your income.." value="{{ Auth::user()->income }}">
+    <input type="number" name="income" style="width: 300px;" placeholder="Enter your income..">
     <button style="width: 80px;">Enter</button>
   </form>
-  <div class="income-container">
-    Total Income: ${{ number_format(Auth::user()->income, 2) }}
+  {{-- combine income & balance div to arrange horizontally --}}
+  <div style="display: flex; gap:30px;">
+    <div class="income-container">
+      Income: Ksh. {{ number_format(Auth::user()->income, 2) }}
+    </div>
+  {{-- show balance --}}
+    <div class="income-container">
+      Balance: Ksh. {{ $income - $total_expenses }}
+    </div>
   </div>
   {{-- add categories --}}
   <form action="/add-category" method="POST" style="display: flex; gap:20px;">
@@ -31,6 +38,7 @@
   {{ $category->name }}
   <br>
   @endforeach
+  {{-- table showing expenses --}}
   <form action="/add-expenses" method="POST">
     @csrf
   <table class="expenses">
