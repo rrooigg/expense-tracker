@@ -34,3 +34,4 @@ Route::post('/add-income', [UserController::class, 'updateIncome']);
 Route::post('/add-category', [UserController::class, 'addCategory']);
 //expenses
 Route::post('/add-expenses', [UserController::class, 'addExpenses']);
+Route::delete('/delete-expense/{expense}', [UserController::class, 'deleteExpense']);

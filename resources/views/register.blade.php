@@ -34,40 +34,38 @@
     <input type="text" name="name" placeholder="Add category.." class="income-form"  style="width: 300px;">
     <button style="width: 80px;">Add</button>
   </form>
-  @foreach ($categories as $category)
-  {{ $category->name }}
-  <br>
+  <div style="margin-bottom: 20px;">
+    @foreach ($categories as $category)
+    {{ $category->name }}
+    <br>
   @endforeach
+  </div>
   {{-- table showing expenses --}}
   <form action="/add-expenses" method="POST">
     @csrf
-  <table class="expenses">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Amount</th>
-        <th>Category</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><input type="text" name="name" class="expenses-input"></td>
-        <td><input type="text" name="amount" class="expenses-input"></td>
-        <td><input type="text" name="category_id" class="expenses-input"></td>
-        <td><Button style="width: 80px;">Add</Button></td>
-      </tr>
-      @foreach ($expenses as $expense)
-      <tr>
-        <td>{{ $expense->name }}</td>
-        <td>{{ $expense->amount }}</td>
-        <td>{{ $expense->category_id }}</td>
-        <td></td>
-      </tr>
-      @endforeach
-    </tbody>
-  </table>
+    <input type="text" name="name" class="expenses-input" placeholder="Name">
+    <input type="text" name="amount" class="expenses-input" placeholder="Amount">
+    <input type="text" name="category_id" class="expenses-input" placeholder="Category">
+    <Button style="width: 80px;">Add</Button>
   </form>
+
+  <table>
+    @foreach ($expenses as $expense)
+    <tr>
+      <td>{{ $expense->name }}</td>
+      <td>{{ $expense->amount }}</td>
+      <td>{{ $expense->category_id }}</td>
+      {{-- add delete button --}}
+      <td>
+        <form action="/delete-expense/{{ $expense->id }}" method="POST">
+          @csrf
+          @method('DELETE')
+          <button style="border:none; background-color: white; width: 30px; height: 30px;"><img src="{{ asset('images/Trash Can.jpg') }}" alt="trash-can" style="width: 30px; height: 30px;"></button>
+        </form>
+      </td>
+    </tr>
+    @endforeach
+  </table>
   @else
   <h1 style="text-align: center;">Welcome to ExpenseTracker</h1>
   <form action="/register" method="POST">

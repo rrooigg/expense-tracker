@@ -79,5 +79,10 @@ class UserController extends Controller
 
         return redirect('/');
     }
+    public function deleteExpense(Expense $expense) {
+        $expense->delete();
+        return redirect('/');
+
+    }
 
 }
