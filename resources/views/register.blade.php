@@ -15,9 +15,12 @@
   {{-- add income --}}
   <form action="/add-income" method="POST" class="income-form">
     @csrf
-    <input type="number" style="width: 300px;" placeholder="Enter your income..">
+    <input type="number" name="income" style="width: 300px;" placeholder="Enter your income.." value="{{ Auth::user()->income }}">
     <button style="width: 80px;">Enter</button>
   </form>
+  <div class="income-container">
+    Total Income: ${{ number_format(Auth::user()->income, 2) }}
+  </div>
   @else
   <h1 style="text-align: center;">Welcome to ExpenseTracker</h1>
   <form action="/register" method="POST">

@@ -41,4 +41,15 @@ class UserController extends Controller
         }
         return redirect('/');
     }
+    //update user income
+    public function updateIncome(Request $request) {
+        $incomingField = $request->validate([
+            'income' => ['required', 'numeric', 'min:0'],
+
+        ]);
+        Auth::user()->update([
+        'income' => $incomingField['income'],
+    ]);
+        return redirect('/');
+    }
 }
