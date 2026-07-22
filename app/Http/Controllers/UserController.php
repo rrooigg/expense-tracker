@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Expense;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -53,6 +54,7 @@ class UserController extends Controller
     ]);
         return redirect('/');
     }
+    //adding category
     public function addCategory(Request $request) {
         $incomingField = $request->validate([
             'name' => 'required',
@@ -63,4 +65,17 @@ class UserController extends Controller
 
         return redirect('/');
     }
+    //add expenses
+    public function addExpenses(Request $request) {
+        $incomingField = $request->validate([
+            'name' => 'required',
+            'amount' => 'required',
+            'category_id' => 'required'
+
+        ]);
+        Expense::create($incomingField);
+
+        return redirect('/');
+    }
+
 }

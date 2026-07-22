@@ -31,6 +31,35 @@
   {{ $category->name }}
   <br>
   @endforeach
+  <form action="/add-expenses" method="POST">
+    @csrf
+  <table class="expenses">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Category</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="text" name="name" class="expenses-input"></td>
+        <td><input type="text" name="amount" class="expenses-input"></td>
+        <td><input type="text" name="category_id" class="expenses-input"></td>
+        <td><Button style="width: 80px;">Add</Button></td>
+      </tr>
+      @foreach ($expenses as $expense)
+      <tr>
+        <td>{{ $expense->name }}</td>
+        <td>{{ $expense->amount }}</td>
+        <td>{{ $expense->category_id }}</td>
+        <td></td>
+      </tr>
+      @endforeach
+    </tbody>
+  </table>
+  </form>
   @else
   <h1 style="text-align: center;">Welcome to ExpenseTracker</h1>
   <form action="/register" method="POST">
